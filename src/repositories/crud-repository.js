@@ -12,10 +12,10 @@ class CrudRepository {
     }
 
     async get(id) {
-        // const response = await this.model.find({_id: id});
+        const response = await this.model.find({_id: id});
 
         // OR
-        const response = await this.model.findById(id);
+        // const response = await this.model.findById(id);
 
         if (!response) {
             throw new AppError('No record found', StatusCodes.NOT_FOUND);
@@ -30,12 +30,10 @@ class CrudRepository {
     }
 
     async update(id, data) { // data is object ----> {........}
-        // const response = this.model.updateOne({ _id: id }, { $set: data });
+        const response = this.model.updateOne({ _id: id }, { $set: data });
 
         // OR
-        const response = this.model.findByIdAndUpdate(id, data);
-
-        console.log('r = ', response);
+        // const response = this.model.findByIdAndUpdate(id, data);
 
         if (!response) {
             throw new AppError('Record not found to update', StatusCodes.NOT_FOUND);
@@ -45,10 +43,10 @@ class CrudRepository {
     }
 
     async destory(id) {
-        // const response = await this.model.deleteOne({ _id: id });
+        const response = await this.model.deleteOne({ _id: id });
 
         // OR
-        const response = await this.model.findByIdAndDelete(id);
+        // const response = await this.model.findByIdAndDelete(id);
 
         if (!response) {
             throw new AppError(
