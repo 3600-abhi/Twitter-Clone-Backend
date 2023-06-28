@@ -12,7 +12,7 @@ class CrudRepository {
     }
 
     async get(id) {
-        const response = await this.model.find({_id: id});
+        const response = await this.model.find({ _id: id });
 
         // OR
         // const response = await this.model.findById(id);
