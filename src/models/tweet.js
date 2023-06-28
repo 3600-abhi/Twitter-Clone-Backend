@@ -7,7 +7,8 @@ const TweetSchema = new Schema({
         type: String
     },
     likes: {
-        type: Number
+        type: Number,
+        default: 0
     },
     noOfRetweet: {
         type: Number
