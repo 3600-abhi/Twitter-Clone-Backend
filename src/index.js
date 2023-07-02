@@ -12,4 +12,4 @@ app.use('/api', apiRoutes);
 app.listen(ServerConfig.PORT, async function () {
     console.log(`Successfully started server at PORT : ${ServerConfig.PORT}`);
     await DatabaseConfig.connectToMongoDB();
-})
+});

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const HashtagSchema = new Schema({
-    text: {
+    text: { 
         type: String,
         unique: true
     },
