@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { TweetRepository, HashtagRepository } from '../repositories/index.js';
+import { TweetRepository } from '../repositories/index.js';
 import AppError from '../utils/errors/app-errors.js';
 import { HashtagService } from '../services/index.js';
 

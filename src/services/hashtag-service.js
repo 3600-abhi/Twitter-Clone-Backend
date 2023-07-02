@@ -21,10 +21,14 @@ async function createHashtag(tweetId, content) {
         });
 
         // push the tweetId to the corresponding old-hashtags
-        await hashtagRepository.updateOldHashtags(tweetId, oldHashtags);
+        if (oldHashtags.length) {
+            await hashtagRepository.updateOldHashtags(tweetId, oldHashtags);
+        }
 
         // create the new-hashtags
-        await hashtagRepository.create(newHashtags);
+        if (newHashtags.length) {
+            await hashtagRepository.create(newHashtags);
+        }
 
     } catch (error) {
         throw new AppError('Cannot create Hashtag', StatusCodes.INTERNAL_SERVER_ERROR);
