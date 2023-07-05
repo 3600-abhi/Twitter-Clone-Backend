@@ -9,7 +9,8 @@ const CommentSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     commentOn: {
         type: Schema.Types.ObjectId,
