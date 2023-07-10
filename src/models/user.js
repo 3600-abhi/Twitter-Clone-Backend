@@ -19,10 +19,12 @@ const UserSchema = new Schema({
         required: true
     },
     bio: {
-        type: String
+        type: String,
+        default: ''
     },
     tweets: [{
         type: Schema.Types.ObjectId,
+        default: [],
         ref: 'Tweet'
     }]
 });

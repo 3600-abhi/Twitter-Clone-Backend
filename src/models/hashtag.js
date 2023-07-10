@@ -3,16 +3,14 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const HashtagSchema = new Schema({
-    text: { 
+    text: {
         type: String,
         unique: true
     },
-    tweets: [
-        {
-            type: Schema.Types.ObjectId
-        }
-    ],
-    
+    tweets: [{
+        type: Schema.Types.ObjectId,
+        required: true
+    }]
 });
 
 const Hashtag = mongoose.model('Hashtag', HashtagSchema);

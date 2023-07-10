@@ -4,17 +4,27 @@ const { Schema } = mongoose;
 
 const TweetSchema = new Schema({
     content: {
-        type: String
+        type: String,
+        required: true
     },
-    likes: {
+    likes: [{
+        type: Schema.Types.ObjectId,
+        default: [],
+        ref: 'Like'
+    }],
+    noOfRetweet: {
         type: Number,
         default: 0
     },
-    noOfRetweet: {
-        type: Number
-    },
-    comment: {
-        type: String
+    comment: [{
+        type: Schema.Types.ObjectId,
+        default: [],
+        ref: 'Comment'
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
 });
 

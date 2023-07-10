@@ -5,6 +5,11 @@ class CommentRepository extends CrudRepository {
     constructor() {
         super(Comment);
     }
+
+    async getByData(data) {
+        const comment = await this.model.findOne(data);
+        return comment;
+    }
 }
 
 export default CommentRepository;

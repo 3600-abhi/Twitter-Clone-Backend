@@ -5,12 +5,7 @@ import AppError from '../utils/errors/app-errors.js';
 
 async function createTweet(req, res) {
     try {
-        const tweet = await TweetService.createTweet({
-            content: req.body.content,
-            likes: req.body.likes,
-            noOfRetweet: req.body.noOfRetweet,
-            comment: req.body.comment
-        });
+        const tweet = await TweetService.createTweet({ ...req.body, user: req.userId });
 
         SuccessResponse.message = 'Successfully created a new Tweet';
         SuccessResponse.data = tweet;
@@ -29,7 +24,10 @@ async function createTweet(req, res) {
 
 async function getTweet(req, res) {
     try {
-        const tweet = await TweetService.getTweet(req.params.id);
+        const tweet = await TweetService.getTweet({
+            _id: req.params.id,
+            user: req.userId
+        });
 
         SuccessResponse.message = 'Successfully fetch the Tweet';
         SuccessResponse.data = tweet;
@@ -48,7 +46,7 @@ async function getTweet(req, res) {
 
 async function getAllTweets(req, res) {
     try {
-        const tweets = await TweetService.getAllTweets();
+        const tweets = await TweetService.getAllTweets(req.userId);
 
         SuccessResponse.message = 'Successfully fetched the Tweets';
         SuccessResponse.data = tweets;
@@ -67,7 +65,11 @@ async function getAllTweets(req, res) {
 
 async function updateTweet(req, res) {
     try {
-        const tweet = await TweetService.updateTweet(req.params.id, req.body);
+        const tweet = await TweetService.updateTweet({
+            ...req.body,
+            tweetId: req.params.id,
+            user: req.userId
+        });
 
         SuccessResponse.message = 'Successfully updated the Tweet';
 
@@ -85,7 +87,10 @@ async function updateTweet(req, res) {
 
 async function destroyTweet(req, res) {
     try {
-        const tweet = await TweetService.destroyTweet(req.params.id);
+        const tweet = await TweetService.destroyTweet({
+            tweetId: req.params.id,
+            userId: req.userId
+        });
 
         SuccessResponse.message = 'Successfully deleted the Tweet'
 

@@ -1,7 +1,15 @@
 import express from 'express';
+import { TweetMiddleware, UserMiddleware, TokenMiddleware } from '../../middlewares/index.js';
 import { TweetController } from '../../controllers/index.js';
 
+
 const router = express.Router();
+
+router.use([
+    TokenMiddleware.isTokenPresent,
+    UserMiddleware.authenticateUser
+]);
+
 
 /** 
  * POST: /api/v1/tweets
@@ -21,7 +29,7 @@ router.get(
 );
 
 
-/** 
+/**
  * GET: /api/v1/tweets
 */
 router.get(
@@ -35,6 +43,7 @@ router.get(
 */
 router.patch(
     '/:id',
+    TweetMiddleware.validateUpdateTweetRequest,
     TweetController.updateTweet
 );
 
